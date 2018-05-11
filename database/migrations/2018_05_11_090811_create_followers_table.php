@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableUserTweet extends Migration
+class CreateFollowersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,17 @@ class CreateTableUserTweet extends Migration
      */
     public function up()
     {
-        Schema::create('user_tweet', function (Blueprint $table) {
+        // many to many intermediary table
+        Schema::create('followers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->integer('tweet_id')->unsigned();
+            $table->integer('user_id')->unsigned(); // user who follow
+            $table->integer('user_follow_id')->unsigned(); // user being followed
             $table->timestamps();
         });
 
-        Schema::table('user_tweet', function (Blueprint $table) {
+
+
+        Schema::table('followers', function (Blueprint $table) {
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
@@ -28,10 +31,10 @@ class CreateTableUserTweet extends Migration
                 ->onDelete('cascade');
         });
 
-        Schema::table('user_tweet', function (Blueprint $table) {
-            $table->foreign('tweet_id')
+        Schema::table('followers', function (Blueprint $table) {
+            $table->foreign('user_follow_id')
                 ->references('id')
-                ->on('tweets')
+                ->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });
@@ -44,7 +47,8 @@ class CreateTableUserTweet extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tweets');
-
+        Schema::table('followers', function (Blueprint $table) {
+            //
+        });
     }
 }

@@ -35,12 +35,12 @@ Route::group(['middleware' => 'auth'], function (){
 
     Route::post('/tweets/add-tweet', 'TweetController@create')->name('createTweet');
     Route::get('/tweets/reload-tweets/{id?}', 'TweetController@reloadTweets')->name('reloadTweets');
+    Route::get('/tweets/favourite', 'TweetController@favourite')->name('favouriteTweet');
     Route::get('/tweets/reload-user-info', 'TweetController@reloadUserInfo')->name('reloadUserInfo');
 
 
     Route::post('/follow', 'FollowController@follow')->name('follow');
     Route::get('/follow/reload-who-to-follow', 'FollowController@reloadWhoToFollow')->name('reloadWhoToFollow');
-
 });
 
 

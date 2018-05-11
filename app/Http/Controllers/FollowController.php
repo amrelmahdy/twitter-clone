@@ -20,10 +20,10 @@ class FollowController extends Controller
             return Super::jsonResponse(false, 503, 'Error in validation', $validator->errors(), new \stdClass());
         }
 
-        $follow = Follow::create([
-            'user_follow_id' => $request->user()->id,
-            'user_followed_id' => $request->user_id,
-        ]);
+
+        $follow = $request->user()->followings()->attach([$request->user_id]);
+
+
 
         if(!$follow){
             return Super::jsonResponse(false, 500, 'Error adding tweet', [],  new \stdClass());
