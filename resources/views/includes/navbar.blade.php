@@ -17,12 +17,17 @@
                 <li class="active">
                     <a href="/"><span class="glyphicon glyphicon-home"></span> Home</a>
                 </li>
-                <li>
+
+                <li class="active">
+                    <a href="{{ route('profile', Auth::user()->username) }}"><span class="glyphicon glyphicon-user"></span> Profile</a>
+                </li>
+
+                {{--<li>
                     <a href="#fake"><span class="glyphicon glyphicon-bell"></span> Notifications</a>
                 </li>
                 <li>
                     <a href="#fake"><span class="glyphicon glyphicon-envelope"></span> Messages</a>
-                </li>
+                </li>--}}
             </ul>
 
 

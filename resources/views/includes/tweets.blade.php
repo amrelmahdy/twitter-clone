@@ -11,10 +11,10 @@
             </h4>
             <p>{{ $tweet->tweet }}</p>
             <ul class="nav nav-pills nav-pills-custom">
-                <li><a href="#"><span class="glyphicon glyphicon-share-alt"></span></a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-retweet"></span></a></li>
+              {{--  <li><a href="#"><span class="glyphicon glyphicon-share-alt"></span></a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-retweet"></span></a></li>--}}
                 <li><a href="#" class="favourite" data-id="{{ $tweet->id }}"><span class="glyphicon glyphicon-star"></span></a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-option-horizontal"></span></a></li>
+                {{--<li><a href="#"><span class="glyphicon glyphicon-option-horizontal"></span></a></li>--}}
             </ul>
         </div>
     </div>

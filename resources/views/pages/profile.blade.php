@@ -7,16 +7,21 @@
             <div class="col-sm-3">
                 <div class="panel panel-default">
                     <div class="panel-body text-center">
-                        <a style="display: block" data-iziModal-open="#change-profile-picture" href="">
-                            <img class="img-responsive" style="width: 100% !important" alt="" src="{{ $user->image }}">
+                        <a style="display: block"
+                           {{ Auth::user()->username == Request::segment(1) ? 'data-iziModal-open=#change-profile-picture' : '' }} href="">
+                            <img class="img-responsive" style="width: 100% !important" alt=""
+                                 src="{{ $user->image }}">
                         </a>
 
                         <!-- about user -->
-                        @include('includes.about-user', ['width' => 64, 'height' => 64])
+                        <div class="user-info">
+                            @include('includes.about-user', ['width' => 64, 'height' => 64])
+                        </div>
 
                         @if(Auth::user()->username != $user->username && !$user->is_following(Request::segment(1)))
                             <div class="follow-btn-wrapper">
-                                <button data-id="{{ $user->id }}" class="follow btn btn-primary rounded-bottom">Follow</button>
+                                <button data-id="{{ $user->id }}" class="follow btn btn-primary rounded-bottom">Follow
+                                </button>
                             </div>
                         @endif
 
@@ -44,7 +49,6 @@
                     </div>
                 </div>
             </div>
-
 
 
             <div class="col-sm-6">
@@ -122,13 +126,13 @@
 
 @section('scripts')
     <script>
-       $(document).ready(function () {
-           $(".iziModal").iziModal({
-               width: 700,
-               radius: 5,
-               padding: 20,
-               loop: true
-           })
-       })
+        $(document).ready(function () {
+            $(".iziModal").iziModal({
+                width: 700,
+                radius: 5,
+                padding: 20,
+                loop: true
+            })
+        })
     </script>
 @stop
