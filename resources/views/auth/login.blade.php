@@ -35,6 +35,10 @@
                 </label>--}}
             </div>
 
+            <div class="reset-password-area">
+                <span class="psw"><a href="{{ route('register') }}">Create Account</a></span>
+            </div>
+
             <div class="social-login text-center">
                 <p style="margin: 10px 0; text-transform: capitalize">you can login with</p>
                 <a href="{{ route('loginFacebook') }}">
@@ -46,9 +50,7 @@
                 </a>
             </div>
 
-            <div class="reset-password-area">
-                <span class="psw"><a href="#">Forgot password?</a></span>
-            </div>
+
         </form>
     </div>
 @stop

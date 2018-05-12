@@ -1,3 +1,4 @@
+/*
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import $ from 'jquery'
@@ -15,4 +16,4 @@ let app = new Vue({
     data: {
         'msg' : 'this is just a msg by vue'
     }
-}).$mount('#app')
+}).$mount('#app')*/

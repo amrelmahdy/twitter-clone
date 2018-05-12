@@ -13,9 +13,13 @@
 
 
 /* LOGIN ROUTES */
+Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('/register', 'Auth\RegisterController@register')->name('postRegister');
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login')->name('postLogin');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+
 
 // social login
 Route::get('login/facebook', 'Auth\LoginController@redirectToFacebook')->name('loginFacebook');
