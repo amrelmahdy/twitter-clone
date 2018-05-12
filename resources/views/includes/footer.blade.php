@@ -67,7 +67,26 @@
         // favourite a tweet
         $(document).on('click', '.favourite', function (e) {
             e.preventDefault()
-            $(this).toggleClass('active')
+            let that = $(this);
+            let tweet_id = $(this).data('id');
+            var status = 1
+            if(that.hasClass('active')){
+               status = 0
+            }
+            $.ajax({
+                url: URL + '/tweets/favourite',
+                type: 'POST',
+                data: {_token: token, tweet_id: tweet_id, status: status},
+                success: function (data) {
+                    console.log(data)
+                    that.toggleClass('active')
+                    console.log($(this))
+                    $('.tweet-icons' + tweet_id).load(URL + '/tweets/reload-tweet-info/' + tweet_id)
+                },
+                error: function (err) {
+
+                }
+            })
         })
     })
 </script>

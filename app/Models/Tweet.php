@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class Tweet extends Model
 {
@@ -33,7 +34,21 @@ class Tweet extends Model
 
     // users who favourites
     public function users(){
-        return $this->belongsToMany(Tweet::class);
+        return $this->belongsToMany(Tweet::class, 'user_tweet');
+    }
+
+    // if user a tweet
+    public function isFavourite(){
+        $authUserFavourites = Auth::user()->favourites->pluck('id')->toArray();
+        if(in_array($this->id, $authUserFavourites)){
+            return true;
+        }
+        return false;
+    }
+
+    public function getAllFavourites(){
+        $count = $this->users->count();
+        return $count;
     }
 
 }

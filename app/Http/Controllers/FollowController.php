@@ -21,15 +21,13 @@ class FollowController extends Controller
         }
 
 
-        $follow = $request->user()->followings()->attach([$request->user_id]);
-
-
-
-        if(!$follow){
-            return Super::jsonResponse(false, 500, 'Error adding tweet', [],  new \stdClass());
+        try{
+            $request->user()->followings()->attach([$request->user_id]);
+        }catch (\Exception $ex){
+            return Super::jsonResponse(false, 500, 'Error following user', [],  new \stdClass());
         }
 
-        return Super::jsonResponse(true, 200, 'user followed..', [], $follow);
+        return Super::jsonResponse(true, 200, 'user followed..', [], new \stdClass());
 
     }
 

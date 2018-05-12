@@ -30,13 +30,24 @@
                 <input type="password" placeholder="Enter Password" name="password" required>
 
                 <button type="submit">Login</button>
-                <label>
+               {{-- <label>
                     <input type="checkbox" checked="checked" name="remember"> Remember me
-                </label>
+                </label>--}}
+            </div>
+
+            <div class="social-login text-center">
+                <p style="margin: 10px 0; text-transform: capitalize">you can login with</p>
+                <a href="{{ route('loginFacebook') }}">
+                    <img src="{{ asset('images/facebook.png') }}" alt="fb">
+                </a>
+                <span style="margin: 0 10px"></span>
+                <a href="{{ route('loginGoogle') }}">
+                    <img src="{{ asset('images/google.png') }}" alt="fb">
+                </a>
             </div>
 
             <div class="reset-password-area">
-                <span class="psw">Forgot <a href="#">password?</a></span>
+                <span class="psw"><a href="#">Forgot password?</a></span>
             </div>
         </form>
     </div>

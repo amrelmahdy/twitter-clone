@@ -1,4 +1,5 @@
 @forelse($tweets as $tweet)
+
     <div class="media">
         <a class="media-left" href="{{ route('profile', $tweet->tweeter->username) }}">
             <img alt="" class="media-object img-rounded" src="{{ $tweet->tweeter->image }}">
@@ -10,10 +11,10 @@
                 <small>{{ Super::readableDate($tweet->created_at)  }}</small>
             </h4>
             <p>{{ $tweet->tweet }}</p>
-            <ul class="nav nav-pills nav-pills-custom">
-              {{--  <li><a href="#"><span class="glyphicon glyphicon-share-alt"></span></a></li>
+            <ul class="nav nav-pills nav-pills-custom tweet-icons{{ $tweet->id }}">
+                {{--  <li><a href="#"><span class="glyphicon glyphicon-share-alt"></span></a></li>
                 <li><a href="#"><span class="glyphicon glyphicon-retweet"></span></a></li>--}}
-                <li><a href="#" class="favourite" data-id="{{ $tweet->id }}"><span class="glyphicon glyphicon-star"></span></a></li>
+                @include('includes.tweets-icons', ['tweet' => $tweet])
                 {{--<li><a href="#"><span class="glyphicon glyphicon-option-horizontal"></span></a></li>--}}
             </ul>
         </div>

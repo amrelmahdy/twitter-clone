@@ -11,7 +11,7 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'username', 'image', 'social_id'
     ];
 
     protected $hidden = [
@@ -84,6 +84,8 @@ class User extends Authenticatable
 
     // favourites tweets of a user
     public function favourites(){
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(Tweet::class, 'user_tweet', 'user_id', 'tweet_id')->withTimestamps();
     }
+
+
 }

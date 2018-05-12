@@ -2,11 +2,11 @@
   color: lightgrey;
 }
 
-.nav-pills-custom > li > a:focus,
+/*.nav-pills-custom > li > a:focus,
 .nav-pills-custom > li > a:hover {
   background: none;
   color: grey;
-}
+}*/
 
 .panel-custom > .panel-heading {
   background: none;
@@ -152,7 +152,22 @@ div.panel-heading {
   padding: 4px 15px;
 }
 
-.nav-pills-custom > li > a.active{
+.favourite.active{
   background: none;
-  color: grey;
+  color: grey !important;
+}
+
+.favourite{
+  color: lightgray !important;
+  padding: 10px 6px !important;
+}
+
+
+.nav>li>a:focus, .nav>li>a:hover{
+  background-color: transparent !important;
+}
+
+
+.nav-pills-custom li a{
+  float: left !important;
 }

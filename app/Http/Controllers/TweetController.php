@@ -34,7 +34,6 @@ class TweetController extends Controller
         return Super::jsonResponse(true, 200, 'tweet added..', [], $tweet);
     }
 
-
     public function reloadTweets($id = NULL){
         if($id === NULL){
             $tweets = User::timelineTweets();
@@ -42,6 +41,35 @@ class TweetController extends Controller
             $tweets = Auth::user()->tweets;
         }
         return View('includes.tweets', compact('tweets'));
+    }
+
+    public function favouriteTweet(Request $request){
+        $rules = [
+            'tweet_id' => 'required',
+            'status' => 'required',
+        ];
+
+        $validator  = Validator::make($request->all(), $rules);
+
+        if($validator->fails()){
+            return Super::jsonResponse(false, 503, 'Error in validation', $validator->errors(), new \stdClass());
+        }
+        try{
+            if($request->status == 1) {
+                $request->user()->favourites()->attach([$request->tweet_id]);
+            } else {
+                $request->user()->favourites()->detach([$request->tweet_id]);
+            }
+        }catch (\Exception $ex){
+            return Super::jsonResponse(false, 500, $ex->getMessage(), [],  new \stdClass());
+        }
+
+        return Super::jsonResponse(true, 200, 'tweet favourite ..', [], new \stdClass());
+    }
+
+    public function reloadTweetInfo($tweet_id){
+        $tweet = Tweet::find($tweet_id);
+        return View('includes.tweets-icons', compact('tweet'));
     }
 
     public function reloadUserInfo(){
